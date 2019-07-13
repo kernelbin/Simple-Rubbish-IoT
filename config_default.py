@@ -1,4 +1,4 @@
-WEB_URL = "http://127.0.0.1"
+WEB_URL = "http://192.168.137.1:8080"
 BACKEND_HOST = ""
 BACKEND_PORT = ""
 SERVO1 = 18
