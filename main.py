@@ -22,7 +22,7 @@ video = cv2.VideoCapture(0)
 while True:
     ret, frame = video.read()
     img, decode_result = detect_qrcode(frame)
-    if img:
+    if img is not None:
         print("Got %s".format(decode_result.data.decode()))
         import time
         time.sleep(5)
