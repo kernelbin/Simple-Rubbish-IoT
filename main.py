@@ -1,7 +1,6 @@
-try:
 from servo import Servo
-import config
-
+try:
+    import config
 except:
     import config_default as config
 import cv2
