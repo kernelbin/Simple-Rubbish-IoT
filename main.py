@@ -63,7 +63,7 @@ while True:
         else:
             turn_to_right()
         import time
-        time.sleep(5)
+        # time.sleep(5)
     else:
         cv2.imshow("qwq", img)
 
