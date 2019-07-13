@@ -6,7 +6,7 @@ except:
 import cv2
 from image import detect_qrcode
 from socket_handler import SocketHandler
-
+import time
 socket_handler = SocketHandler(config.BACKEND_HOST, config.BACKEND_PORT)
 
 
@@ -46,6 +46,7 @@ def turn_to_right():
     servo2.rotate(BASE)
 
 
+last_time = 0
 while True:
     # continue
     ret, frame = video.read()
@@ -54,6 +55,9 @@ while True:
     if cv2.waitKey(1) == ord('q'):
         break
     if img is None and decode_result:
+        if time.time()-last_time < 20:
+            continue
+        last_time = time.time()
         # print("Got {}".format(decode_result.data.decode()))
         userid, bagtype = decode_result.data.decode().split(" ")
         print(userid, bagtype)
