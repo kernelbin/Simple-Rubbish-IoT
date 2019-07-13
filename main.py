@@ -38,7 +38,7 @@ def detect_qrcode(image):
     # c = [0]
     codes = []
     # print(codes)
-    if not cnts:
+    if not len(cnts):
         return image, []
     for area in sorted(cnts, key=cv2.contourArea, reverse=True):
         # 计算最大轮廓的包围box
