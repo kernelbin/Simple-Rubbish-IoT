@@ -72,4 +72,4 @@ def detect_qrcode(image):
             # codes.append(current)
 
     # codes = codes[:1]
-    return image, None
+    return closed, None
