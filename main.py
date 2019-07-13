@@ -22,6 +22,7 @@ video = cv2.VideoCapture(0)
 BASE = 110
 servo1 = Servo(config.SERVO1)
 servo2 = Servo(config.SERVO2)
+print("Reseting servo...")
 servo1.rotate(BASE)
 servo2.rotate(BASE)
 
