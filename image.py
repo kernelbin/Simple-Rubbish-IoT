@@ -50,13 +50,15 @@ def detect_qrcode(image):
         rect = cv2.minAreaRect(area)
         # print(rect)
         box = np.int0(cv2.cv2.boxPoints(rect))
-        # print(box)
+        print(box)
         # cv2.putText(image, decode_result.decode(), rect[0][0])
         # 将box画在原始图像中显示出来，这样便成功检测到了条形码
+        cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
         current = image[box[0][0]:box[0][1], box[2][0]:box[2][1]]
         if current.size:
             decode_result = pyzbar.decode(current)
             # print(decode_result)
+            
             if not decode_result:
                 continue
             if decode_result is list:
@@ -64,11 +66,11 @@ def detect_qrcode(image):
             
             return None, decode_result[0]
             # print(decode_result)
-            # cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
+            
             
             # cv2.putText(image, decode_result,
             #             tuple(box[0]), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
             # codes.append(current)
 
     # codes = codes[:1]
-    return closed, None
+    return image, None
