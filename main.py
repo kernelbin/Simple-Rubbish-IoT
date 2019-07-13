@@ -40,6 +40,9 @@ def detect_qrcode(image):
     print(cnts)
     if not len(cnts):
         return image, []
+    for x in cnts:
+        print(x)
+        print(cv2.contourArea(x))
     for area in sorted(cnts, key=cv2.contourArea, reverse=True):
         # 计算最大轮廓的包围box
         rect = cv2.minAreaRect(area)
