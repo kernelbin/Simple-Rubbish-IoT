@@ -55,7 +55,7 @@ while True:
     if img is None and decode_result:
         # print("Got {}".format(decode_result.data.decode()))
         userid, bagtype = decode_result.data.decode().split(" ")
-        # print(userid, bagtype)
+        print(userid, bagtype)
         if bagtype == "dry":
             turn_to_left()
         else:
