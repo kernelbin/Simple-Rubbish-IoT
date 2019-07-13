@@ -57,8 +57,8 @@ def detect_qrcode(image):
         current = image[box[0][0]:box[0][1], box[2][0]:box[2][1]]
         if current.size:
             decode_result = pyzbar.decode(current)
-            print(decode_result)
-            print(box)
+            # print(decode_result)
+            # print(box)
             cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
             if not decode_result:
                 continue
