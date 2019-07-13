@@ -6,7 +6,7 @@ except:
 import cv2
 from image import detect_qrcode
 from socket_handler import SocketHandler
-from servo import Servo
+
 socket_handler = SocketHandler(config.BACKEND_HOST, config.BACKEND_PORT)
 
 
@@ -20,6 +20,7 @@ socket_handler.start()
 
 video = cv2.VideoCapture(0)
 BASE = 110
+from servo import Servo
 servo1 = Servo(config.SERVO1)
 servo2 = Servo(config.SERVO2)
 print("Reseting servo...")
@@ -56,10 +57,11 @@ while True:
         # print("Got {}".format(decode_result.data.decode()))
         userid, bagtype = decode_result.data.decode().split(" ")
         print(userid, bagtype)
-        if bagtype == "dry":
-            turn_to_left()
-        else:
-            turn_to_right()
+        exit(0)
+        # if bagtype == "dry":
+        #     turn_to_left()
+        # else:
+        #     turn_to_right()
     else:
         cv2.imshow("qwq", img)
 
