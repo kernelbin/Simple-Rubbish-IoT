@@ -29,8 +29,8 @@ servo2.rotate(BASE)
 
 
 def turn_to_left():
-    servo1.rotate(BASE-30)
-    servo2.rotate(BASE+30)
+    servo1.rotate(BASE-50)
+    servo2.rotate(BASE+50)
     import time
     time.sleep(4)
     servo1.rotate(BASE)
@@ -38,8 +38,8 @@ def turn_to_left():
 
 
 def turn_to_right():
-    servo1.rotate(BASE+30)
-    servo2.rotate(BASE-30)
+    servo1.rotate(BASE+50)
+    servo2.rotate(BASE-50)
     import time
     time.sleep(4)
     servo1.rotate(BASE)
