@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import pyzbar.pyzbar as pyzbar
 
+
 def detect_qrcode(image):
     # 读入图片并灰度化
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -31,13 +32,14 @@ def detect_qrcode(image):
     closed = cv2.dilate(closed, None, iterations=4)
 
     # 最后找图像中国条形码的轮廓
-    cnts, *_ = cv2.findContours(closed.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts, *_ = cv2.findContours(closed.copy(),
+                                cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # 通过对轮廓面积进行排序，找到面积最大的轮廓即为最外层轮廓
     # c = [0]
     codes = []
     # print(codes)
     if not codes:
-        return image,[]
+        return image, []
     for area in sorted(cnts, key=cv2.contourArea, reverse=True):
         # 计算最大轮廓的包围box
         rect = cv2.minAreaRect(area)
@@ -46,7 +48,7 @@ def detect_qrcode(image):
         print(box)
         # cv2.putText(image, decode_result.decode(), rect[0][0])
         # 将box画在原始图像中显示出来，这样便成功检测到了条形码
-        current = image[box[0][0]:box[0][1],box[2][0]:box[2][1]]
+        current = image[box[0][0]:box[0][1], box[2][0]:box[2][1]]
         if current.size:
             decode_result = pyzbar.decode(current)
             if not decode_result:
@@ -68,10 +70,10 @@ capture = cv2.VideoCapture(0)
 while True:
     ret, frame = capture.read()
     # 将这帧转换为灰度图
-    cv2.imwrite("qwq.png",frame)
+    # cv2.imwrite("qwq.png", frame)
     result, codes = detect_qrcode(frame)
     # if codes:
-    
+
     cv2.imshow('frame', result)
     # import time
     # time.sleep(0.1)
