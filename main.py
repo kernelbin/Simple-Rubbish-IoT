@@ -31,8 +31,7 @@ def detect_qrcode(image):
     closed = cv2.dilate(closed, None, iterations=4)
 
     # 最后找图像中国条形码的轮廓
-    (cnts, _) = cv2.findContours(closed.copy(),
-                                 cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    (cnts, _) = cv2.findContours(closed.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # 通过对轮廓面积进行排序，找到面积最大的轮廓即为最外层轮廓
     # c = [0]
     codes = []
