@@ -21,14 +21,18 @@ class SocketHandler(Thread):
     def run(self):
         while self.running:
             try:
+                self.socket = socket.socket(socket.AF_INET)
                 self.socket.connect((self.host, self.port))
                 self.last_heartbeat = time.time()
                 print("Connected")
                 self.connected = True
                 self.on_connected()
+                # print(self.running,self.breaking)
                 while self.running and not self.breaking:
                     try:
-                        packid = int(self.socket.recv(1))
+                        print("Receiving...")
+                        packid = int.from_bytes(self.socket.recv(1), "little")
+                        print("Packet ID {} received.".format(packid))
                         packet_length = int.from_bytes(
                             self.socket.recv(4), "little")
                         packet_body = self.socket.recv(packet_length)
@@ -38,19 +42,23 @@ class SocketHandler(Thread):
                         # print(ex)
                         print("Packet recv failed..")
                         print(traceback.format_exc())
+                        self.socket.close()
+                        break
                 self.breaking = False
             except Exception as ex:
                 print("Connect failed...retrying...")
                 print(traceback.format_exc())
+                time.sleep(5.0)
             self.connected = False
 
     def update_server_heartbeat(self):
         self.last_heartbeat = time.time()
 
     def send_packet(self, pack_id, format_string="", *args):
-        print("Sending {} {} {}".format(pack_id,format_string,args))
+        print("Sending {} {} {}".format(pack_id, format_string, args))
         body = pack(format_string, *args)
         head = pack("BI", pack_id, len(body))
+        print(head+body)
         self.socket.send(head+body)
 
     def send_login(self, uuid):

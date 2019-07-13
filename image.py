@@ -57,17 +57,19 @@ def detect_qrcode(image):
         current = image[box[0][0]:box[0][1], box[2][0]:box[2][1]]
         if current.size:
             decode_result = pyzbar.decode(current)
+            # print(decode_result)
             if not decode_result:
                 continue
             if decode_result is list:
                 decode_result = decode_result[0]
-
+            
+            return None, decode_result[0]
             # print(decode_result)
-            cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
-            return None,decode_result
-            cv2.putText(image, decode_result,
-                        tuple(box[0]), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
-            codes.append(current)
+            # cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
+            
+            # cv2.putText(image, decode_result,
+            #             tuple(box[0]), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
+            # codes.append(current)
 
-    codes = codes[:1]
-    return image, codes
+    # codes = codes[:1]
+    return image, None
