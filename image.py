@@ -40,8 +40,7 @@ def detect_qrcode(image):
     # c = [0]
     codes = []
     # print(cnts)
-    if not len(cnts):
-        return image, []
+
     # for x in cnts:
     #     print(x)
     #     print(cv2.contourArea(x))
