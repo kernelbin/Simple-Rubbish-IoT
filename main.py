@@ -55,7 +55,7 @@ while True:
         # print("Got {}".format(decode_result.data.decode()))
         userid, bagtype = decode_result.data.decode().split(" ")
         # print(userid, bagtype)
-        if bagtype=="dry":
+        if bagtype == "dry":
             turn_to_left()
         else:
             turn_to_right()
