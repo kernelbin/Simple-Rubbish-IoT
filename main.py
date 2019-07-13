@@ -1,5 +1,6 @@
 try:
-    import config
+from servo import Servo
+import config
 
 except:
     import config_default as config
@@ -20,7 +21,7 @@ socket_handler.start()
 
 video = cv2.VideoCapture(0)
 BASE = 110
-from servo import Servo
+OFFSET = 60
 servo1 = Servo(config.SERVO1)
 servo2 = Servo(config.SERVO2)
 print("Reseting servo...")
@@ -29,8 +30,8 @@ servo2.rotate(BASE)
 
 
 def turn_to_left():
-    servo1.rotate(BASE-50)
-    servo2.rotate(BASE+50)
+    servo1.rotate(BASE-OFFSET)
+    servo2.rotate(BASE+OFFSET)
     import time
     time.sleep(4)
     servo1.rotate(BASE)
@@ -38,8 +39,8 @@ def turn_to_left():
 
 
 def turn_to_right():
-    servo1.rotate(BASE+50)
-    servo2.rotate(BASE-50)
+    servo1.rotate(BASE+OFFSET)
+    servo2.rotate(BASE-OFFSET)
     import time
     time.sleep(4)
     servo1.rotate(BASE)
@@ -62,6 +63,8 @@ while True:
             turn_to_left()
         else:
             turn_to_right()
+        import time
+        time.sleep(5)
     else:
         cv2.imshow("qwq", img)
 
