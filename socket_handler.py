@@ -48,7 +48,7 @@ class SocketHandler(Thread):
         self.last_heartbeat = time.time()
 
     def send_packet(self, pack_id, format_string="", *args):
-        print(f"Sending {pack_id} {format_string} {args}")
+        print("Sending {} {} {}".format(pack_id,format_string,args))
         body = pack(format_string, *args)
         head = pack("BI", pack_id, len(body))
         self.socket.send(head+body)
