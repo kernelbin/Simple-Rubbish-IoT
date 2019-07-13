@@ -19,8 +19,8 @@ socket_handler.on_connected = func
 socket_handler.start()
 
 video = cv2.VideoCapture(0)
-BASE = 110
-OFFSET = 60
+BASE = 100
+OFFSET = 45
 servo1 = Servo(config.SERVO1)
 servo2 = Servo(config.SERVO2)
 print("Reseting servo...")
