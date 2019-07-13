@@ -65,8 +65,10 @@ capture = cv2.VideoCapture(0)
 while True:
     ret, frame = capture.read()
     # 将这帧转换为灰度图
+    cv2.imwrite("qwq.png",frame)
     result, codes = detect_qrcode(frame)
     # if codes:
+    
     cv2.imshow('frame', result)
     # import time
     # time.sleep(0.1)
