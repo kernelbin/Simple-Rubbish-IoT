@@ -35,6 +35,7 @@ def detect_qrcode(image):
     # 通过对轮廓面积进行排序，找到面积最大的轮廓即为最外层轮廓
     # c = [0]
     codes = []
+    print(codes)
     for area in sorted(cnts, key=cv2.contourArea, reverse=True):
         # 计算最大轮廓的包围box
         rect = cv2.minAreaRect(area)
