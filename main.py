@@ -55,7 +55,7 @@ while True:
     if cv2.waitKey(1) == ord('q'):
         break
     if img is None and decode_result:
-        if time.time()-last_time < 20:
+        if time.time()-last_time < 10:
             continue
         last_time = time.time()
         # print("Got {}".format(decode_result.data.decode()))
@@ -66,6 +66,7 @@ while True:
             turn_to_left()
         else:
             turn_to_right()
+        
         import time
         # time.sleep(5)
     else:
