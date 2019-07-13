@@ -57,11 +57,11 @@ while True:
         # print("Got {}".format(decode_result.data.decode()))
         userid, bagtype = decode_result.data.decode().split(" ")
         print(userid, bagtype)
-        exit(0)
-        # if bagtype == "dry":
-        #     turn_to_left()
-        # else:
-        #     turn_to_right()
+        # exit(0)
+        if bagtype == "dry":
+            turn_to_left()
+        else:
+            turn_to_right()
     else:
         cv2.imshow("qwq", img)
 

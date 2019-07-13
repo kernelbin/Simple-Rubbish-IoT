@@ -17,7 +17,7 @@ def detect_qrcode(image):
     # 利用去噪仅关注条形码区域，使用9*9的内核对梯度图进行平均模糊，
     # 有助于平滑梯度表征的图形中的高频噪声，然后进行二值化
     blurred = cv2.blur(gradient, (9, 9))
-    (_, thresh) = cv2.threshold(blurred, 225, 255, cv2.THRESH_BINARY)
+    (_, thresh) = cv2.threshold(blurred, 160, 160, cv2.THRESH_BINARY)
 
     # 对二值化图进行形态学操作，消除条形码竖杠之间的缝隙
     # 使用cv2.getStructuringElement构造一个长方形内核。这个内核的宽度大于长度，
