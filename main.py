@@ -69,7 +69,7 @@ while True:
     result, codes = detect_qrcode(frame)
     # if codes:
     cv2.imshow('frame', result)
-    import time
-    time.sleep(0.1)
+    # import time
+    # time.sleep(0.1)
     if cv2.waitKey(1) == ord('q'):
         break
