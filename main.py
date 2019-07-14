@@ -61,7 +61,11 @@ while True:
             continue
         last_time = time.time()
         # print("Got {}".format(decode_result.data.decode()))
-        userid, bagtype = decode_result.data.decode().split(" ")
+        try:
+            userid, bagtype = decode_result.data.decode().split(" ")
+        except Exception as ex:
+            print("Bad QR Code")
+            continue
         print(userid, bagtype)
         # exit(0)
         ret = json.JSONDecoder().decode(util.send_http_request(
