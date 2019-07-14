@@ -13,7 +13,6 @@ def unpack(format, bytes: bytes) -> tuple:
         if char == "i":
             ret.append(int.from_bytes(bytes[ptr:ptr+4], "little", signed=True))
             ptr += 4
-
         elif char == "I":
             ret.append(int.from_bytes(
                 bytes[ptr:ptr+4], "little", signed=False))
@@ -59,7 +58,7 @@ def pack(format, *args) -> bytes:
         elif char == "B":
             buf.write(int(args[ptr]).to_bytes(1, "little", signed=False))
         elif char == "s":
-            str_bytes = args[ptr].encode("utf-8")
+            str_bytes = str(args[ptr]).encode("utf-8")
             buf.write(len(str_bytes).to_bytes(2, "little", signed=False))
             buf.write(str_bytes)
 
